@@ -1,55 +1,165 @@
-# Deployment Guide
+# Mintee Deployment Guide
 
-## Quick Netlify Deployment
+Your premium peppermint water e-commerce platform is ready for deployment! This guide covers Git setup and multiple deployment options.
 
-### Step 1: Push to GitHub
-1. Create a new repository on GitHub
-2. Initialize Git in your project:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin [your-repo-url]
-   git push -u origin main
-   ```
+## 🚀 Quick Git Setup
 
-### Step 2: Connect to Netlify
-1. Go to [netlify.com](https://netlify.com) and sign up/login
+### 1. Prepare Your Repository
+```bash
+# Remove any existing git locks (if needed)
+rm -f .git/index.lock
+
+# Check git status
+git status
+
+# Add all files
+git add .
+
+# Create initial commit
+git commit -m "Initial commit: Mintee e-commerce platform with subscription service"
+
+# Set main branch (if needed)
+git branch -M main
+```
+
+### 2. Connect to Your Remote Repository
+```bash
+# Add your GitHub/GitLab repository
+git remote add origin [YOUR_REPOSITORY_URL]
+
+# Push to remote
+git push -u origin main
+```
+
+## 🌐 Deployment Options
+
+### Option 1: Netlify (Recommended)
+
+**Quick Setup:**
+1. Go to [netlify.com](https://netlify.com)
 2. Click "New site from Git"
-3. Choose GitHub and authorize
-4. Select your repository
-5. Configure build settings:
+3. Connect your repository
+4. Configure build settings:
    - **Build command**: `npm run build`
    - **Publish directory**: `dist`
    - **Node version**: 18
 
-### Step 3: Environment Variables
-Add these in Netlify dashboard → Site settings → Environment variables:
-- `STRIPE_SECRET_KEY`: Your Stripe secret key
-- `VITE_STRIPE_PUBLIC_KEY`: Your Stripe publishable key
+**Environment Variables:**
+```
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+VITE_STRIPE_PUBLIC_KEY=pk_test_your_stripe_public_key
+```
 
-### Step 4: Deploy
-Click "Deploy site" - Netlify will:
-- Install dependencies
-- Build your site
-- Deploy to global CDN
-- Provide a live URL
+### Option 2: Vercel
 
-## Custom Domain (Optional)
-1. In Netlify dashboard → Domain settings
-2. Add custom domain
-3. Configure DNS records as shown
-4. SSL certificate auto-generated
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run: `vercel --prod`
+3. Follow prompts to deploy
 
-## Production Checklist
-- [ ] Replace test Stripe keys with live keys
-- [ ] Test payment flow thoroughly
-- [ ] Set up proper error monitoring
-- [ ] Configure form notifications
-- [ ] Add Google Analytics (optional)
+### Option 3: Railway
 
-## Monitoring
-- Netlify provides built-in analytics
-- Function logs available in dashboard
-- Set up Stripe webhooks for payment confirmations
+1. Connect GitHub repository at [railway.app](https://railway.app)
+2. Add environment variables
+3. Deploy automatically
+
+## 🔧 Environment Variables
+
+**Required for all deployments:**
+- `STRIPE_SECRET_KEY` - Your Stripe secret key (starts with `sk_`)
+- `VITE_STRIPE_PUBLIC_KEY` - Your Stripe publishable key (starts with `pk_`)
+
+**Get Stripe Keys:**
+1. Visit [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+2. Copy your test keys for development
+3. Use live keys for production
+
+## 📦 Build Process
+
+The build creates optimized production assets:
+```bash
+npm run build
+```
+
+**Output:**
+- `dist/` - Static files for deployment
+- Optimized JavaScript (~374KB)
+- Compressed CSS (~65KB)
+- Image assets included
+
+## ✅ Pre-Deployment Checklist
+
+**Technical:**
+- [ ] Environment variables configured
+- [ ] Build completes successfully
+- [ ] All routes work properly
+- [ ] Payment integration tested
+
+**Business:**
+- [ ] Stripe account verified
+- [ ] Payment flow tested with test cards
+- [ ] Contact forms working
+- [ ] Subscription plans configured
+
+**SEO & Performance:**
+- [ ] Meta tags configured
+- [ ] Images optimized
+- [ ] Loading states implemented
+- [ ] Error handling in place
+
+## 🧪 Testing Your Deployment
+
+**Test Cards for Stripe:**
+- Success: `4242 4242 4242 4242`
+- Declined: `4000 0000 0000 0002`
+- 3D Secure: `4000 0025 0000 3155`
+
+**Key Features to Test:**
+1. Homepage loads correctly
+2. Product catalog displays
+3. Shopping cart functionality
+4. Checkout process (one-time payment)
+5. Subscription flow
+6. Contact form submission
+7. Mobile responsiveness
+
+## 🔄 Continuous Deployment
+
+Once connected to Git, deployments are automatic:
+1. Push code changes to main branch
+2. Deployment service rebuilds automatically
+3. Changes go live within 2-3 minutes
+
+## 📊 Post-Deployment
+
+**Monitor:**
+- Deployment logs for errors
+- Payment webhooks in Stripe
+- Site performance metrics
+- User analytics
+
+**Optimize:**
+- Set up error monitoring (Sentry)
+- Configure analytics (Google Analytics)
+- Add monitoring alerts
+- Set up backup systems
+
+## 🆘 Troubleshooting
+
+**Common Issues:**
+- **Build fails**: Check Node.js version (18+)
+- **Env vars missing**: Verify all required variables set
+- **Payments not working**: Check Stripe key configuration
+- **Images not loading**: Verify asset paths in build
+
+**Support:**
+- Check deployment service logs
+- Verify environment variables
+- Test locally with `npm run build && npm run preview`
+
+Your Mintee platform includes:
+- Complete e-commerce functionality
+- Subscription service with recurring billing
+- Stripe payment integration
+- Mobile-responsive design
+- SEO optimization
+- Production-ready build system
