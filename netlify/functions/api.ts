@@ -175,23 +175,29 @@ export const handler: Handler = async (event, context) => {
           }
         });
 
+        // Create Stripe product
+        const product = await stripe.products.create({
+          name: plan.name,
+          description: plan.description,
+        });
+
+        // Create Stripe price
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: Math.round(parseFloat(plan.price) * 100),
+          currency: 'gbp',
+          recurring: {
+            interval: plan.interval === 'weekly' ? 'week' : 
+                     plan.interval === 'quarterly' ? 'month' : 'month',
+            interval_count: plan.interval === 'quarterly' ? 3 : 1
+          }
+        });
+
         // Create Stripe subscription
         const subscription = await stripe.subscriptions.create({
           customer: customer.id,
           items: [{
-            price_data: {
-              currency: 'gbp',
-              product_data: {
-                name: plan.name,
-                description: plan.description,
-              },
-              unit_amount: Math.round(parseFloat(plan.price) * 100),
-              recurring: {
-                interval: plan.interval === 'weekly' ? 'week' : 
-                         plan.interval === 'quarterly' ? 'month' : 'month',
-                interval_count: plan.interval === 'quarterly' ? 3 : 1
-              }
-            }
+            price: price.id
           }],
           payment_behavior: 'default_incomplete',
           payment_settings: { save_default_payment_method: 'on_subscription' },

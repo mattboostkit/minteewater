@@ -129,11 +129,11 @@ export default function Footer() {
           <div>
             <h4 className="gazpacho-black text-lg mb-4">Support</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-green-200 hover:text-white transition-colors">FAQs</a></li>
-              <li><a href="#" className="text-green-200 hover:text-white transition-colors">Shipping Info</a></li>
-              <li><a href="#" className="text-green-200 hover:text-white transition-colors">Returns</a></li>
-              <li><a href="#" className="text-green-200 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-green-200 hover:text-white transition-colors">Terms & Conditions</a></li>
+              <li><Link href="/faq" className="text-green-200 hover:text-white transition-colors">FAQs</Link></li>
+              <li><Link href="/shipping" className="text-green-200 hover:text-white transition-colors">Shipping Info</Link></li>
+              <li><Link href="/returns" className="text-green-200 hover:text-white transition-colors">Returns</Link></li>
+              <li><Link href="/privacy" className="text-green-200 hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-green-200 hover:text-white transition-colors">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-green-800 text-center">
           <p className="text-green-200">
-            © 2024 Mintee Water Ltd. All rights reserved. | Made with 💚 in the UK
+            © 2025 Mintee Water Ltd. All rights reserved. | Made with 💚 in the UK
           </p>
         </div>
       </div>

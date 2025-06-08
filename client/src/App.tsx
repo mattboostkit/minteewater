@@ -17,6 +17,11 @@ import Checkout from "@/pages/checkout";
 import PaymentSuccess from "@/pages/payment-success";
 import Subscribe from "@/pages/subscribe";
 import SubscriptionSuccess from "@/pages/subscription-success";
+import FAQ from "@/pages/faq";
+import Shipping from "@/pages/shipping";
+import Returns from "@/pages/returns";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -31,6 +36,11 @@ function Router() {
       <Route path="/payment-success" component={PaymentSuccess} />
       <Route path="/subscribe" component={Subscribe} />
       <Route path="/subscription-success" component={SubscriptionSuccess} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/shipping" component={Shipping} />
+      <Route path="/returns" component={Returns} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
       <Route component={NotFound} />
     </Switch>
   );
