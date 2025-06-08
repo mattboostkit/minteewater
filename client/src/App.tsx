@@ -13,6 +13,7 @@ import Shop from "@/pages/shop";
 import About from "@/pages/about";
 import Sustainability from "@/pages/sustainability";
 import Contact from "@/pages/contact";
+import Checkout from "@/pages/checkout";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/sustainability" component={Sustainability} />
       <Route path="/contact" component={Contact} />
+      <Route path="/checkout" component={Checkout} />
       <Route component={NotFound} />
     </Switch>
   );
