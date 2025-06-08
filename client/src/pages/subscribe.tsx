@@ -20,11 +20,8 @@ interface SubscriptionPlan {
   description: string | null;
   price: string;
   interval: string;
-  productQuantity: number;
-  productId: number | null;
-  stripePriceId: string | null;
-  isActive: boolean | null;
-  createdAt: Date | null;
+  bottlesPerDelivery: number;
+  isPopular: boolean;
 }
 
 interface SubscriptionFormProps {
@@ -190,7 +187,7 @@ const SubscriptionForm = ({ selectedPlan, onBack }: SubscriptionFormProps) => {
         <CardHeader>
           <CardTitle>Complete Your Subscription</CardTitle>
           <CardDescription>
-            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.productQuantity} bottles
+            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -332,7 +329,7 @@ export default function Subscribe() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span>Bottles per delivery:</span>
-                  <span className="font-semibold">{plan.productQuantity}</span>
+                  <span className="font-semibold">{plan.bottlesPerDelivery}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Delivery frequency:</span>
@@ -341,7 +338,7 @@ export default function Subscribe() {
                 <div className="flex items-center justify-between">
                   <span>Price per bottle:</span>
                   <span className="font-semibold">
-                    £{(parseFloat(plan.price) / plan.productQuantity).toFixed(2)}
+                    £{(parseFloat(plan.price) / plan.bottlesPerDelivery).toFixed(2)}
                   </span>
                 </div>
               </div>
