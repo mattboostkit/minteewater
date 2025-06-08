@@ -40,6 +40,37 @@ const products = [
   }
 ];
 
+// In-memory subscription plans data for Netlify deployment
+const subscriptionPlans = [
+  {
+    id: 1,
+    name: "Weekly Delivery",
+    description: "Fresh Mintee delivered to your door every week",
+    price: "9.99",
+    interval: "weekly",
+    bottlesPerDelivery: 6,
+    isPopular: false
+  },
+  {
+    id: 2,
+    name: "Monthly Delivery",
+    description: "Monthly supply of refreshing Mintee water",
+    price: "34.99",
+    interval: "monthly",
+    bottlesPerDelivery: 24,
+    isPopular: true
+  },
+  {
+    id: 3,
+    name: "Quarterly Delivery",
+    description: "Stock up with our best value quarterly plan",
+    price: "94.99",
+    interval: "quarterly",
+    bottlesPerDelivery: 72,
+    isPopular: false
+  }
+];
+
 export const handler: Handler = async (event, context) => {
   const { path, httpMethod, body } = event;
   
@@ -109,6 +140,84 @@ export const handler: Handler = async (event, context) => {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ success: true, message: 'Subscribed successfully' }),
       };
+    }
+
+    // Subscription plans endpoint
+    if (path === '/.netlify/functions/api/subscription-plans' && httpMethod === 'GET') {
+      return {
+        statusCode: 200,
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify(subscriptionPlans),
+      };
+    }
+
+    // Create subscription endpoint
+    if (path === '/.netlify/functions/api/create-subscription' && httpMethod === 'POST') {
+      const subscriptionData = JSON.parse(body || '{}');
+      
+      // Find the plan
+      const plan = subscriptionPlans.find(p => p.id === subscriptionData.planId);
+      if (!plan) {
+        return {
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({ error: 'Invalid plan ID' }),
+        };
+      }
+
+      try {
+        // Create Stripe customer
+        const customer = await stripe.customers.create({
+          email: subscriptionData.customerEmail,
+          name: subscriptionData.customerName,
+          address: {
+            line1: subscriptionData.deliveryAddress
+          }
+        });
+
+        // Create Stripe subscription
+        const subscription = await stripe.subscriptions.create({
+          customer: customer.id,
+          items: [{
+            price_data: {
+              currency: 'gbp',
+              product_data: {
+                name: plan.name,
+                description: plan.description,
+              },
+              unit_amount: Math.round(parseFloat(plan.price) * 100),
+              recurring: {
+                interval: plan.interval === 'weekly' ? 'week' : 
+                         plan.interval === 'quarterly' ? 'month' : 'month',
+                interval_count: plan.interval === 'quarterly' ? 3 : 1
+              }
+            }
+          }],
+          payment_behavior: 'default_incomplete',
+          payment_settings: { save_default_payment_method: 'on_subscription' },
+          expand: ['latest_invoice.payment_intent']
+        });
+
+        const invoice = subscription.latest_invoice as any;
+        const paymentIntent = invoice?.payment_intent;
+
+        return {
+          statusCode: 200,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            subscriptionId: subscription.id,
+            clientSecret: paymentIntent?.client_secret,
+            status: subscription.status
+          }),
+        };
+      } catch (error: any) {
+        console.error('Subscription creation error:', error);
+        return {
+          statusCode: 500,
+          headers,
+          body: JSON.stringify({ error: 'Failed to create subscription: ' + error.message }),
+        };
+      }
     }
 
     return {
