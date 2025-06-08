@@ -24,16 +24,13 @@ interface SubscriptionPlan {
   isPopular: boolean;
 }
 
-interface SubscriptionFormProps {
+interface CustomerInfoFormProps {
   selectedPlan: SubscriptionPlan | null;
   onBack: () => void;
-  clientSecret: string | null;
   onClientSecretReceived: (secret: string) => void;
 }
 
-const SubscriptionForm = ({ selectedPlan, onBack, clientSecret, onClientSecretReceived }: SubscriptionFormProps) => {
-  const stripe = useStripe();
-  const elements = useElements();
+const CustomerInfoForm = ({ selectedPlan, onBack, onClientSecretReceived }: CustomerInfoFormProps) => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [customerInfo, setCustomerInfo] = useState({
@@ -182,47 +179,153 @@ const SubscriptionForm = ({ selectedPlan, onBack, clientSecret, onClientSecretRe
     );
   }
 
-  // Show payment form only if we have clientSecret
-  if (clientSecret) {
-    return (
-      <div className="max-w-md mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle>Complete Your Subscription</CardTitle>
-            <CardDescription>
-              £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handlePaymentSubmit} className="space-y-4">
-              <PaymentElement />
-              <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={onBack} className="flex-1">
-                  Back
-                </Button>
-                <Button type="submit" disabled={!stripe || isLoading} className="flex-1">
-                  {isLoading ? "Processing..." : "Subscribe Now"}
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  // Loading state while creating subscription
   return (
     <div className="max-w-md mx-auto">
       <Card>
         <CardHeader>
-          <CardTitle>Setting up your subscription...</CardTitle>
+          <CardTitle>Subscription Details</CardTitle>
           <CardDescription>
-            Please wait while we prepare your payment
+            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center justify-center py-8">
-          <div className="animate-spin w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full" />
+        <CardContent>
+          <form onSubmit={handleCustomerInfoSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                required
+                value={customerInfo.name}
+                onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Enter your full name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                required
+                value={customerInfo.email}
+                onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Enter your email address"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                Delivery Address
+              </label>
+              <textarea
+                id="address"
+                required
+                rows={3}
+                value={customerInfo.address}
+                onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Enter your full delivery address"
+              />
+            </div>
+
+            <div className="pt-4 border-t">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-lg font-semibold">Total:</span>
+                <span className="text-2xl font-bold text-green-600">
+                  £{selectedPlan?.price}/{selectedPlan?.interval}
+                </span>
+              </div>
+              
+              <div className="flex gap-3">
+                <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+                  Back
+                </Button>
+                <Button type="submit" disabled={isLoading} className="flex-1">
+                  {isLoading ? "Processing..." : "Continue to Payment"}
+                </Button>
+              </div>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+interface PaymentFormProps {
+  selectedPlan: SubscriptionPlan | null;
+  onBack: () => void;
+}
+
+const PaymentForm = ({ selectedPlan, onBack }: PaymentFormProps) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/subscription-success`,
+        },
+      });
+
+      if (error) {
+        toast({
+          title: "Payment Error",
+          description: error.message || "Failed to process payment",
+          variant: "destructive",
+        });
+      }
+    } catch (error: any) {
+      toast({
+        title: "Payment Error",
+        description: error.message || "Failed to process payment",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto">
+      <Card>
+        <CardHeader>
+          <CardTitle>Complete Your Subscription</CardTitle>
+          <CardDescription>
+            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handlePaymentSubmit} className="space-y-4">
+            <PaymentElement />
+            <div className="flex gap-3 pt-4">
+              <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+                Back
+              </Button>
+              <Button type="submit" disabled={!stripe || isLoading} className="flex-1">
+                {isLoading ? "Processing..." : "Subscribe Now"}
+              </Button>
+            </div>
+          </form>
         </CardContent>
       </Card>
     </div>
@@ -277,21 +380,18 @@ export default function Subscribe() {
       <div className="container mx-auto px-4 py-16 pt-24">
         {clientSecret ? (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <SubscriptionForm 
+            <PaymentForm 
               selectedPlan={selectedPlan} 
               onBack={() => {
                 setSelectedPlan(null);
                 setClientSecret(null);
               }}
-              clientSecret={clientSecret}
-              onClientSecretReceived={setClientSecret}
             />
           </Elements>
         ) : (
-          <SubscriptionForm 
+          <CustomerInfoForm 
             selectedPlan={selectedPlan} 
             onBack={() => setSelectedPlan(null)}
-            clientSecret={null}
             onClientSecretReceived={setClientSecret}
           />
         )}
