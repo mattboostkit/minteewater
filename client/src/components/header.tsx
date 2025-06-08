@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
-import minteeLogoPath from "@assets/mintee_1749399906433.webp";
+import minteeLogoPath from "@assets/mintee_logo_1749400398970.webp";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function Header() {
               <img 
                 src={minteeLogoPath} 
                 alt="Mintee" 
-                className="h-8 w-auto"
+                className="h-11 w-auto"
               />
             </div>
           </Link>
