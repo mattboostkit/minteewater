@@ -27,14 +27,15 @@ interface SubscriptionPlan {
 interface SubscriptionFormProps {
   selectedPlan: SubscriptionPlan | null;
   onBack: () => void;
+  clientSecret: string | null;
+  onClientSecretReceived: (secret: string) => void;
 }
 
-const SubscriptionForm = ({ selectedPlan, onBack }: SubscriptionFormProps) => {
+const SubscriptionForm = ({ selectedPlan, onBack, clientSecret, onClientSecretReceived }: SubscriptionFormProps) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [clientSecret, setClientSecret] = useState("");
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
@@ -65,7 +66,7 @@ const SubscriptionForm = ({ selectedPlan, onBack }: SubscriptionFormProps) => {
       });
 
       const data = await response.json();
-      setClientSecret(data.clientSecret);
+      onClientSecretReceived(data.clientSecret);
     } catch (error: any) {
       toast({
         title: "Subscription Error",
@@ -181,27 +182,47 @@ const SubscriptionForm = ({ selectedPlan, onBack }: SubscriptionFormProps) => {
     );
   }
 
+  // Show payment form only if we have clientSecret
+  if (clientSecret) {
+    return (
+      <div className="max-w-md mx-auto">
+        <Card>
+          <CardHeader>
+            <CardTitle>Complete Your Subscription</CardTitle>
+            <CardDescription>
+              £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handlePaymentSubmit} className="space-y-4">
+              <PaymentElement />
+              <div className="flex gap-3 pt-4">
+                <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+                  Back
+                </Button>
+                <Button type="submit" disabled={!stripe || isLoading} className="flex-1">
+                  {isLoading ? "Processing..." : "Subscribe Now"}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Loading state while creating subscription
   return (
     <div className="max-w-md mx-auto">
       <Card>
         <CardHeader>
-          <CardTitle>Complete Your Subscription</CardTitle>
+          <CardTitle>Setting up your subscription...</CardTitle>
           <CardDescription>
-            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
+            Please wait while we prepare your payment
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handlePaymentSubmit} className="space-y-4">
-            <PaymentElement />
-            <div className="flex gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={onBack} className="flex-1">
-                Back
-              </Button>
-              <Button type="submit" disabled={!stripe || isLoading} className="flex-1">
-                {isLoading ? "Processing..." : "Subscribe Now"}
-              </Button>
-            </div>
-          </form>
+        <CardContent className="flex items-center justify-center py-8">
+          <div className="animate-spin w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full" />
         </CardContent>
       </Card>
     </div>
@@ -211,6 +232,7 @@ const SubscriptionForm = ({ selectedPlan, onBack }: SubscriptionFormProps) => {
 export default function Subscribe() {
   const { toast } = useToast();
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   const { data: plans, isLoading, error } = useQuery<SubscriptionPlan[]>({
     queryKey: ["/api/subscription-plans"],
@@ -253,12 +275,26 @@ export default function Subscribe() {
   if (selectedPlan) {
     return (
       <div className="container mx-auto px-4 py-16 pt-24">
-        <Elements stripe={stripePromise}>
+        {clientSecret ? (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <SubscriptionForm 
+              selectedPlan={selectedPlan} 
+              onBack={() => {
+                setSelectedPlan(null);
+                setClientSecret(null);
+              }}
+              clientSecret={clientSecret}
+              onClientSecretReceived={setClientSecret}
+            />
+          </Elements>
+        ) : (
           <SubscriptionForm 
             selectedPlan={selectedPlan} 
-            onBack={() => setSelectedPlan(null)} 
+            onBack={() => setSelectedPlan(null)}
+            clientSecret={null}
+            onClientSecretReceived={setClientSecret}
           />
-        </Elements>
+        )}
       </div>
     );
   }
