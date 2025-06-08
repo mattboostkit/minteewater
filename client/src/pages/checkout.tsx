@@ -25,29 +25,42 @@ const CheckoutForm = () => {
     e.preventDefault();
 
     if (!stripe || !elements) {
+      toast({
+        title: "Payment Error",
+        description: "Payment system is not ready. Please try again.",
+        variant: "destructive",
+      });
       return;
     }
 
     setIsProcessing(true);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/payment-success`,
-      },
-    });
-
-    if (error) {
-      toast({
-        title: "Payment Failed",
-        description: error.message,
-        variant: "destructive",
+    try {
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/payment-success`,
+        },
       });
-    } else {
-      clearCart();
+
+      if (error) {
+        toast({
+          title: "Payment Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        clearCart();
+        toast({
+          title: "Payment Successful",
+          description: "Thank you for your purchase!",
+        });
+      }
+    } catch (err) {
       toast({
-        title: "Payment Successful",
-        description: "Thank you for your purchase!",
+        title: "Payment Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
       });
     }
 
@@ -56,9 +69,13 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement />
+      <PaymentElement 
+        options={{
+          layout: "tabs"
+        }}
+      />
       <button 
-        disabled={!stripe || isProcessing}
+        disabled={!stripe || !elements || isProcessing}
         className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
       >
         {isProcessing ? "Processing..." : "Complete Payment"}
