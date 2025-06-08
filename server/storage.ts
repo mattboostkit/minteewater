@@ -75,7 +75,7 @@ export class MemStorage implements IStorage {
         description: "3 Bottles - Perfect for trying Mintee",
         quantity: 3,
         price: "8.99",
-        imageUrl: "https://images.unsplash.com/photo-1624213111452-35e8d3d5cc18?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+        imageUrl: "/attached_assets/Three_Bottles_1749401611342.webp",
         isPopular: false
       },
       {
@@ -83,7 +83,7 @@ export class MemStorage implements IStorage {
         description: "6 Bottles - Great for regular enjoyment",
         quantity: 6,
         price: "16.99",
-        imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+        imageUrl: "/attached_assets/Six_Bottles_1749401611341.webp",
         isPopular: true
       },
       {
@@ -91,7 +91,7 @@ export class MemStorage implements IStorage {
         description: "12 Bottles - Perfect monthly hydration",
         quantity: 12,
         price: "31.99",
-        imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
         isPopular: false
       },
       {
@@ -99,7 +99,7 @@ export class MemStorage implements IStorage {
         description: "24 Bottles - Great for sharing",
         quantity: 24,
         price: "59.99",
-        imageUrl: "https://pixabay.com/get/g9d9b82c68ee038520bdf6a9af44ac48ff75cfa6740db292046a56d07d3287a297797dfb51b1f47cbd2ca965fe1dd0d2617097277d17989c6e3536ee0ae8ce836_1280.jpg",
+        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
         isPopular: false
       },
       {
@@ -107,7 +107,7 @@ export class MemStorage implements IStorage {
         description: "48 Bottles - Best value for money",
         quantity: 48,
         price: "109.99",
-        imageUrl: "https://images.unsplash.com/photo-1587536849024-daaa4a417b16?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
         isPopular: false
       }
     ];

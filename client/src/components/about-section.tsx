@@ -11,7 +11,7 @@ export default function AboutSection() {
             <div className="space-y-8">
               <div className="flex space-x-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" 
+                  src="/attached_assets/Becs_1749402024788.webp" 
                   alt="Becs Duffy, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
@@ -26,7 +26,7 @@ export default function AboutSection() {
               
               <div className="flex space-x-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" 
+                  src="/attached_assets/John_1749402024789.webp" 
                   alt="John Duffy, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
@@ -51,7 +51,7 @@ export default function AboutSection() {
           
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" 
+              src="/attached_assets/BecJohn_1749401687230.webp" 
               alt="Founders working in their sustainable facility" 
               className="w-full h-auto rounded-2xl shadow-xl" 
             />
