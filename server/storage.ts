@@ -148,7 +148,15 @@ export class MemStorage implements IStorage {
     ];
 
     defaultProducts.forEach(product => {
-      this.createProduct(product);
+      const id = this.currentProductId++;
+      const processedProduct: Product = { 
+        ...product, 
+        id,
+        description: product.description || null,
+        imageUrl: product.imageUrl || null,
+        isPopular: product.isPopular ?? false
+      };
+      this.products.set(id, processedProduct);
     });
   }
 
@@ -187,7 +195,17 @@ export class MemStorage implements IStorage {
     ];
 
     defaultPlans.forEach(plan => {
-      this.createSubscriptionPlan(plan);
+      const id = this.currentSubscriptionPlanId++;
+      const processedPlan: SubscriptionPlan = { 
+        ...plan, 
+        id, 
+        createdAt: new Date(),
+        description: plan.description || null,
+        stripePriceId: plan.stripePriceId || null,
+        isActive: plan.isActive ?? true,
+        productId: plan.productId || null
+      };
+      this.subscriptionPlans.set(id, processedPlan);
     });
   }
 
@@ -240,7 +258,13 @@ export class MemStorage implements IStorage {
 
   async createProduct(insertProduct: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
-    const product: Product = { ...insertProduct, id };
+    const product: Product = { 
+      ...insertProduct, 
+      id,
+      description: insertProduct.description || null,
+      imageUrl: insertProduct.imageUrl || null,
+      isPopular: insertProduct.isPopular ?? false
+    };
     this.products.set(id, product);
     return product;
   }
@@ -251,7 +275,9 @@ export class MemStorage implements IStorage {
     const order: Order = { 
       ...insertOrder, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      status: insertOrder.status || "pending",
+      customerPhone: insertOrder.customerPhone || null
     };
     this.orders.set(id, order);
     return order;
@@ -268,7 +294,12 @@ export class MemStorage implements IStorage {
   // Order item methods
   async createOrderItem(insertOrderItem: InsertOrderItem): Promise<OrderItem> {
     const id = this.currentOrderItemId++;
-    const orderItem: OrderItem = { ...insertOrderItem, id };
+    const orderItem: OrderItem = { 
+      ...insertOrderItem, 
+      id,
+      orderId: insertOrderItem.orderId || null,
+      productId: insertOrderItem.productId || null
+    };
     this.orderItems.set(id, orderItem);
     return orderItem;
   }
@@ -285,7 +316,8 @@ export class MemStorage implements IStorage {
     const message: ContactMessage = { 
       ...insertMessage, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      newsletter: insertMessage.newsletter ?? false
     };
     this.contactMessages.set(id, message);
     return message;
@@ -328,7 +360,8 @@ export class MemStorage implements IStorage {
       createdAt: new Date(),
       description: insertPlan.description || null,
       stripePriceId: insertPlan.stripePriceId || null,
-      isActive: insertPlan.isActive ?? true
+      isActive: insertPlan.isActive ?? true,
+      productId: insertPlan.productId || null
     };
     this.subscriptionPlans.set(id, plan);
     return plan;

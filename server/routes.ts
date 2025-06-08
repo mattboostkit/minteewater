@@ -6,7 +6,8 @@ import {
   insertContactMessageSchema, 
   insertNewsletterSubscriptionSchema,
   insertOrderSchema,
-  insertOrderItemSchema
+  insertOrderItemSchema,
+  insertSubscriptionSchema
 } from "@shared/schema";
 import { z } from "zod";
 
