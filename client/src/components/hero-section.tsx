@@ -1,5 +1,4 @@
 import { CheckCircle } from "lucide-react";
-import minteeHeroPath from "@assets/Mintee_Hero_1749400719322.webp";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -58,7 +57,7 @@ export default function HeroSection() {
           
           <div className="relative">
             <img 
-              src={minteeHeroPath} 
+              src="https://ik.imagekit.io/boostkit/Mintee/Mintee_Hero.webp?updatedAt=1749416997118" 
               alt="Mintee premium peppermint water bottles" 
               className="w-full h-auto rounded-2xl shadow-2xl" 
             />
