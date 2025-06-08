@@ -36,27 +36,32 @@ const CheckoutForm = () => {
     setIsProcessing(true);
 
     try {
-      const { error } = await stripe.confirmPayment({
+      const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/payment-success`,
         },
+        redirect: 'if_required'
       });
 
       if (error) {
+        console.error('Payment error:', error);
         toast({
           title: "Payment Failed",
-          description: error.message,
+          description: error.message || "Payment could not be processed",
           variant: "destructive",
         });
-      } else {
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         clearCart();
         toast({
           title: "Payment Successful",
           description: "Thank you for your purchase!",
         });
+        // Redirect to success page
+        window.location.href = '/payment-success';
       }
     } catch (err) {
+      console.error('Unexpected payment error:', err);
       toast({
         title: "Payment Error",
         description: "An unexpected error occurred. Please try again.",
@@ -172,7 +177,22 @@ export default function Checkout() {
           </div>
 
           {/* Payment Form */}
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <Elements 
+            stripe={stripePromise} 
+            options={{ 
+              clientSecret,
+              appearance: {
+                theme: 'stripe',
+                variables: {
+                  colorPrimary: '#16a34a',
+                  colorBackground: '#ffffff',
+                  colorText: '#1f2937',
+                  fontFamily: 'system-ui, sans-serif',
+                  borderRadius: '8px'
+                }
+              }
+            }}
+          >
             <CheckoutForm />
           </Elements>
         </div>
