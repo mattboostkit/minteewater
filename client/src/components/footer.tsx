@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -8,6 +9,7 @@ export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const [location] = useLocation();
 
   const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,9 +34,11 @@ export default function Footer() {
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -80,11 +84,41 @@ export default function Footer() {
           <div>
             <h4 className="gazpacho-black text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><button onClick={() => scrollToSection('home')} className="text-green-200 hover:text-white transition-colors">Home</button></li>
-              <li><button onClick={() => scrollToSection('shop')} className="text-green-200 hover:text-white transition-colors">Shop</button></li>
-              <li><button onClick={() => scrollToSection('about')} className="text-green-200 hover:text-white transition-colors">About Us</button></li>
-              <li><button onClick={() => scrollToSection('sustainability')} className="text-green-200 hover:text-white transition-colors">Sustainability</button></li>
-              <li><button onClick={() => scrollToSection('contact')} className="text-green-200 hover:text-white transition-colors">Contact</button></li>
+              <li>
+                {location === '/' ? (
+                  <button onClick={() => scrollToSection('home')} className="text-green-200 hover:text-white transition-colors">Home</button>
+                ) : (
+                  <Link href="/" className="text-green-200 hover:text-white transition-colors">Home</Link>
+                )}
+              </li>
+              <li>
+                {location === '/' ? (
+                  <button onClick={() => scrollToSection('shop')} className="text-green-200 hover:text-white transition-colors">Shop</button>
+                ) : (
+                  <Link href="/shop" className="text-green-200 hover:text-white transition-colors">Shop</Link>
+                )}
+              </li>
+              <li>
+                {location === '/' ? (
+                  <button onClick={() => scrollToSection('about')} className="text-green-200 hover:text-white transition-colors">About Us</button>
+                ) : (
+                  <Link href="/about" className="text-green-200 hover:text-white transition-colors">About Us</Link>
+                )}
+              </li>
+              <li>
+                {location === '/' ? (
+                  <button onClick={() => scrollToSection('sustainability')} className="text-green-200 hover:text-white transition-colors">Sustainability</button>
+                ) : (
+                  <Link href="/sustainability" className="text-green-200 hover:text-white transition-colors">Sustainability</Link>
+                )}
+              </li>
+              <li>
+                {location === '/' ? (
+                  <button onClick={() => scrollToSection('contact')} className="text-green-200 hover:text-white transition-colors">Contact</button>
+                ) : (
+                  <Link href="/contact" className="text-green-200 hover:text-white transition-colors">Contact</Link>
+                )}
+              </li>
             </ul>
           </div>
           

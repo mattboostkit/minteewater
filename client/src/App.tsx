@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/lib/cart-store";
+import { usePageTitle } from "@/hooks/use-page-title";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CartSidebar from "@/components/cart-sidebar";
@@ -28,6 +29,8 @@ function Router() {
 }
 
 function App() {
+  usePageTitle();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
