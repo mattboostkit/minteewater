@@ -1,0 +1,153 @@
+wss://eval.spock.platform.replit.com/wsv2/v2.public.Q2dZSXNiNld3Z1lTQmdqUTJwYkNCaUlGYzNCdlkyc3dBRHEwQWdva05UaG1ZakEwTVRBdE5EYzBNeTAwT1RkakxUbG1aV1F0TWpZMVlUZGlOR1UxWXpaakVnTnVhWGdhRjNKbGNHeHBkQzF5WlhCc0xXWnBiR1Z6TFhOd2IyTnJJaGRJYVZSbFkyaEJaWE4wYUdWMGFXTnpWMlZpYzJsMFpTb01iV0YwZEdKdmIzTjBhMmwwUWxFS0dISmxjR3hwZEMxeVpYQnNMV0pzYjJOcmN5MXpjRzlqYXhJV2NtVndiR2wwTFhKbGNHd3RiV1YwWVMxemNHOWpheG9kY21Wd2JHbDBMVzFoY21kaGNtbHVaUzFpYkc5amEzTXRjM0J2WTJ0S0J3akxwcGNTRUFGUUFGb0laWGh3Ykc5eVpYSmFHVzl1WW05aGNtUnBibWRmWlhod1pYSnBaVzVqWlY5c2IzZGFEMmx1ZEdWdWRGOWlkWE5wYm1WemMxb1ViMjVpYjJGeVpHbHVaMTl5YjJ4bFgyVjRaV05hRzI5dVltOWhjbVJwYm1kZmFtOWlYMlZ1ZEhKbGNISmxibVYxY25nQVVpVUlBUkNBZ0lDQUNCa0FBQUFBQUFEd1B5RUFBQUFBQUFEd1B5aUFnSUNBeUFFd0FUZ0FZQUJxRXdqTHBwY1NFZ3h0WVhSMFltOXZjM1JyYVhTQ0FRSXFBSW9CSXdnQkVJQ0FnSUFnR1FBQUFBQUFBQkJBSVFBQUFBQUFBQkJBS0lDQWdJRElBVEFBbWdFS0NnZ3dMakF1TVRNM09hQUJBUT094TBoPFTN5e7iAw8_XCzNRKahtWK5hNPIxZ3Q3XPsXgnKH7EJqQi-zSFWs5-9Rh94VbWqlL_JupS0hr5yo2GsAw.Q2dad2NtOWtPak1pQ25KbGNHeHBkQzVqYjIwPQ' failed: 
+connect @ 4899-ffda3d52dd402ee5.js:1Understand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/diagnostic/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/diagnostic/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnYQRJeLeAYeDl1S9UTWos_secret_jKXYoVfBftW4Ex4XQhgbdBFJC&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=f0d666c2-192f-445c-a8cc-735700dc2049:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnYQRJeLeAYeDl1S9UTWos_secret_jKXYoVfBftW4Ex4XQhgbdBFJC&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=f0d666c2-192f-445c-a8cc-735700dc2049:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnYQRJeLeAYeDl1S9UTWos_secret_jKXYoVfBftW4Ex4XQhgbdBFJC&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=f0d666c2-192f-445c-a8cc-735700dc2049:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnYQRJeLeAYeDl1S9UTWos_secret_jKXYoVfBftW4Ex4XQhgbdBFJC&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=f0d666c2-192f-445c-a8cc-735700dc2049:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnYQRJeLeAYeDl1S9UTWos_secret_jKXYoVfBftW4Ex4XQhgbdBFJC&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=f0d666c2-192f-445c-a8cc-735700dc2049:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+events.launchdarkly.com/events/bulk/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_ADDRESS_INVALIDUnderstand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnaGRJeLeAYeDl0qBUQ8vr_secret_t85qF4AFkuQlqkNHoNkXEOQMm&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8b3c0d6c-87a9-4e94-9ebf-19b911d5c5d2:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnaGRJeLeAYeDl0qBUQ8vr_secret_t85qF4AFkuQlqkNHoNkXEOQMm&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8b3c0d6c-87a9-4e94-9ebf-19b911d5c5d2:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnaGRJeLeAYeDl0qBUQ8vr_secret_t85qF4AFkuQlqkNHoNkXEOQMm&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8b3c0d6c-87a9-4e94-9ebf-19b911d5c5d2:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnaGRJeLeAYeDl0qBUQ8vr_secret_t85qF4AFkuQlqkNHoNkXEOQMm&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8b3c0d6c-87a9-4e94-9ebf-19b911d5c5d2:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnaGRJeLeAYeDl0qBUQ8vr_secret_t85qF4AFkuQlqkNHoNkXEOQMm&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8b3c0d6c-87a9-4e94-9ebf-19b911d5c5d2:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+[Violation] Potential permissions policy violation: publickey-credentials-get is not allowed in this document.Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnbWRJeLeAYeDl1TUKOdVc_secret_BAJfG9vC10JVhhb0YktlW5iTn&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8ab9f149-2f9f-4f82-ac69-aa07eaaf0a18:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnbWRJeLeAYeDl1TUKOdVc_secret_BAJfG9vC10JVhhb0YktlW5iTn&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8ab9f149-2f9f-4f82-ac69-aa07eaaf0a18:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnbWRJeLeAYeDl1TUKOdVc_secret_BAJfG9vC10JVhhb0YktlW5iTn&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8ab9f149-2f9f-4f82-ac69-aa07eaaf0a18:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnbWRJeLeAYeDl1TUKOdVc_secret_BAJfG9vC10JVhhb0YktlW5iTn&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8ab9f149-2f9f-4f82-ac69-aa07eaaf0a18:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+api.stripe.com/v1/elements/sessions?client_secret=pi_3RXnbWRJeLeAYeDl1TUKOdVc_secret_BAJfG9vC10JVhhb0YktlW5iTn&key=pk_live_51OkX5VIsT1wi4EFExU4EtgfQdqhnZUFrfJ2NN2ZdStFlz7xrqsnsPRAs1eVLLJ28eB6FfuAEyPUMrhnOQ58nYQVg00qiNnpfA8&_stripe_version=2025-03-31.basil&type=payment_intent&locale=en-GB&referrer_host=a6cacb54-d2bf-45f7-a59d-69ee8881b5c5-00-22wd6tlu6v6v7.janeway.replit.dev&top_level_referrer_host=replit.com&expand[0]=payment_method_preference.payment_intent.payment_method&elements_init_source=stripe.elements&stripe_js_id=8ab9f149-2f9f-4f82-ac69-aa07eaaf0a18:1 
+            
+            
+           Failed to load resource: the server responded with a status of 400 ()Understand this error
+MinteeWater:1 Unable to download payment manifest "https://pay.google.com/gp/p/payment_method_manifest.json".Understand this error
+MinteeWater:1 Unable to download payment manifest "https://pay.google.com/gp/p/payment_method_manifest.json".
