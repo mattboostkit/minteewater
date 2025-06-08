@@ -88,6 +88,13 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 const CartContext = createContext<{
   state: CartState;
   dispatch: React.Dispatch<CartAction>;
+  addItem: (product: Product) => void;
+  removeItem: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  clearCart: () => void;
+  toggleCart: () => void;
+  openCart: () => void;
+  closeCart: () => void;
 } | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -98,8 +105,26 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     count: 0
   });
 
+  const addItem = (product: Product) => dispatch({ type: "ADD_ITEM", payload: product });
+  const removeItem = (id: number) => dispatch({ type: "REMOVE_ITEM", payload: id });
+  const updateQuantity = (id: number, quantity: number) => dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } });
+  const clearCart = () => dispatch({ type: "CLEAR_CART" });
+  const toggleCart = () => dispatch({ type: "TOGGLE_CART" });
+  const openCart = () => dispatch({ type: "OPEN_CART" });
+  const closeCart = () => dispatch({ type: "CLOSE_CART" });
+
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
+    <CartContext.Provider value={{ 
+      state, 
+      dispatch, 
+      addItem, 
+      removeItem, 
+      updateQuantity, 
+      clearCart, 
+      toggleCart, 
+      openCart, 
+      closeCart 
+    }}>
       {children}
     </CartContext.Provider>
   );

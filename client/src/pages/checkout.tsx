@@ -69,7 +69,8 @@ const CheckoutForm = () => {
 
 export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
-  const { items, total } = useCart();
+  const { state } = useCart();
+  const { items, total } = state;
 
   useEffect(() => {
     if (items.length === 0) {
@@ -136,7 +137,7 @@ export default function Checkout() {
           {/* Order Summary */}
           <div className="mb-8 p-6 bg-gray-50 rounded-xl">
             <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
-            {items.map((item) => (
+            {items.map((item: any) => (
               <div key={item.id} className="flex justify-between items-center py-2">
                 <span>{item.name} x {item.cartQuantity}</span>
                 <span>£{(parseFloat(item.price) * item.cartQuantity).toFixed(2)}</span>
