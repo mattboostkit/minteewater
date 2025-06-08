@@ -96,6 +96,9 @@ export default function Header() {
                 Contact
               </Link>
             )}
+            <Link href="/subscribe" className="text-green-700 hover:text-green-500 font-medium transition-colors bg-green-50 px-3 py-1 rounded-full">
+              Subscribe
+            </Link>
           </div>
           
           {/* Cart & Mobile Menu Button */}

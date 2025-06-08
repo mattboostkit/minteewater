@@ -15,6 +15,8 @@ import Sustainability from "@/pages/sustainability";
 import Contact from "@/pages/contact";
 import Checkout from "@/pages/checkout";
 import PaymentSuccess from "@/pages/payment-success";
+import Subscribe from "@/pages/subscribe";
+import SubscriptionSuccess from "@/pages/subscription-success";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -27,6 +29,8 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/payment-success" component={PaymentSuccess} />
+      <Route path="/subscribe" component={Subscribe} />
+      <Route path="/subscription-success" component={SubscriptionSuccess} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -191,6 +191,171 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all subscription plans
+  app.get("/api/subscription-plans", async (req, res) => {
+    try {
+      const plans = await storage.getAllSubscriptionPlans();
+      res.json(plans);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch subscription plans" });
+    }
+  });
+
+  // Create subscription with Stripe
+  app.post("/api/create-subscription", async (req, res) => {
+    try {
+      const subscriptionData = insertSubscriptionSchema.parse(req.body);
+      
+      // Get the subscription plan
+      const plan = await storage.getSubscriptionPlan(subscriptionData.planId!);
+      if (!plan) {
+        return res.status(400).json({ error: "Subscription plan not found" });
+      }
+
+      // Create Stripe customer if needed
+      let stripeCustomer;
+      try {
+        stripeCustomer = await stripe.customers.create({
+          email: req.body.customerEmail,
+          name: req.body.customerName,
+          address: {
+            line1: subscriptionData.deliveryAddress
+          }
+        });
+      } catch (stripeError) {
+        console.error("Stripe customer creation error:", stripeError);
+        return res.status(500).json({ error: "Failed to create customer" });
+      }
+
+      // Create Stripe subscription
+      let stripeSubscription;
+      try {
+        stripeSubscription = await stripe.subscriptions.create({
+          customer: stripeCustomer.id,
+          items: [{
+            price_data: {
+              currency: 'gbp',
+              product_data: {
+                name: plan.name,
+                description: plan.description || undefined,
+              },
+              unit_amount: Math.round(parseFloat(plan.price) * 100),
+              recurring: {
+                interval: plan.interval === 'weekly' ? 'week' : 
+                         plan.interval === 'quarterly' ? 'month' : 'month',
+                interval_count: plan.interval === 'quarterly' ? 3 : 1
+              }
+            }
+          }],
+          payment_behavior: 'default_incomplete',
+          payment_settings: { save_default_payment_method: 'on_subscription' },
+          expand: ['latest_invoice.payment_intent']
+        });
+      } catch (stripeError) {
+        console.error("Stripe subscription creation error:", stripeError);
+        return res.status(500).json({ error: "Failed to create subscription" });
+      }
+
+      // Save subscription to storage
+      const subscription = await storage.createSubscription({
+        planId: plan.id,
+        stripeSubscriptionId: stripeSubscription.id,
+        stripeCustomerId: stripeCustomer.id,
+        status: stripeSubscription.status,
+        currentPeriodStart: new Date(stripeSubscription.current_period_start * 1000),
+        currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
+        deliveryAddress: subscriptionData.deliveryAddress,
+        cancelAtPeriodEnd: false,
+        userId: subscriptionData.userId
+      });
+
+      const invoice = stripeSubscription.latest_invoice as any;
+      const paymentIntent = invoice?.payment_intent;
+
+      res.json({
+        subscriptionId: subscription.id,
+        stripeSubscriptionId: stripeSubscription.id,
+        clientSecret: paymentIntent?.client_secret,
+        status: stripeSubscription.status
+      });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid subscription data", details: error.errors });
+      }
+      console.error("Subscription creation error:", error);
+      res.status(500).json({ error: "Failed to create subscription: " + error.message });
+    }
+  });
+
+  // Get user subscriptions
+  app.get("/api/subscriptions/:userId", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const subscriptions = await storage.getUserSubscriptions(userId);
+      res.json(subscriptions);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch subscriptions" });
+    }
+  });
+
+  // Cancel subscription
+  app.post("/api/subscriptions/:id/cancel", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const subscription = await storage.getSubscription(id);
+      
+      if (!subscription) {
+        return res.status(404).json({ error: "Subscription not found" });
+      }
+
+      // Cancel in Stripe
+      await stripe.subscriptions.update(subscription.stripeSubscriptionId, {
+        cancel_at_period_end: true
+      });
+
+      // Update in storage
+      const updatedSubscription = await storage.updateSubscriptionStatus(
+        id, 
+        subscription.status, 
+        true
+      );
+
+      res.json(updatedSubscription);
+    } catch (error: any) {
+      console.error("Subscription cancellation error:", error);
+      res.status(500).json({ error: "Failed to cancel subscription: " + error.message });
+    }
+  });
+
+  // Reactivate subscription
+  app.post("/api/subscriptions/:id/reactivate", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const subscription = await storage.getSubscription(id);
+      
+      if (!subscription) {
+        return res.status(404).json({ error: "Subscription not found" });
+      }
+
+      // Reactivate in Stripe
+      await stripe.subscriptions.update(subscription.stripeSubscriptionId, {
+        cancel_at_period_end: false
+      });
+
+      // Update in storage
+      const updatedSubscription = await storage.updateSubscriptionStatus(
+        id, 
+        'active', 
+        false
+      );
+
+      res.json(updatedSubscription);
+    } catch (error: any) {
+      console.error("Subscription reactivation error:", error);
+      res.status(500).json({ error: "Failed to reactivate subscription: " + error.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
