@@ -9,7 +9,7 @@ export default function PaymentSuccess() {
   useEffect(() => {
     // Clear cart on successful payment
     clearCart();
-  }, [clearCart]);
+  }, []);
 
   return (
     <main className="pt-16 min-h-screen bg-gray-50">
