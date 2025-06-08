@@ -1,4 +1,5 @@
 import { CheckCircle } from "lucide-react";
+import minteeHeroPath from "@assets/Mintee_Hero_1749400719322.webp";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -19,7 +20,7 @@ export default function HeroSection() {
                 <span className="text-green-600">Peppermint Tea</span>
               </h1>
               <p className="text-xl text-green-700 leading-relaxed max-w-lg">
-                Discover natural digestive wellness with Mintee's premium peppermint-infused water. Zero calories, locally sourced, sustainably crafted.
+                Put a 'pep' in your step with Mintee's premium peppermint-infused water. Zero calories, locally sourced, sustainably crafted.
               </p>
             </div>
             
@@ -57,7 +58,7 @@ export default function HeroSection() {
           
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800" 
+              src={minteeHeroPath} 
               alt="Mintee premium peppermint water bottles" 
               className="w-full h-auto rounded-2xl shadow-2xl" 
             />
