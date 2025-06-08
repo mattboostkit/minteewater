@@ -49,8 +49,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <h3 className="gazpacho-black text-3xl text-white">MINTEE</h3>
-              <span className="ml-2 text-green-200">WATER</span>
+              <img 
+                src="https://ik.imagekit.io/boostkit/Mintee/mintee_logo_white.webp?updatedAt=1749408894324" 
+                alt="Mintee" 
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-green-100 leading-relaxed max-w-md">
               The chilled evolution of peppermint tea. Natural digestive wellness in every refreshing sip, 

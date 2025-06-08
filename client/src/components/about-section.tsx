@@ -11,7 +11,7 @@ export default function AboutSection() {
             <div className="space-y-8">
               <div className="flex space-x-4">
                 <img 
-                  src="/attached_assets/Becs_1749402024788.webp" 
+                  src="https://ik.imagekit.io/boostkit/Mintee/Becs.webp?updatedAt=1749408731641" 
                   alt="Becs Duffy, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
@@ -19,14 +19,14 @@ export default function AboutSection() {
                   <h3 className="gazpacho-black text-xl text-green-800">Becs Duffy</h3>
                   <p className="text-gray-600 mb-2">Co-Founder & Wellness Advocate</p>
                   <p className="text-gray-700">
-                    With a background in nutrition and wellness, Becs recognised the need for a natural, refreshing alternative to traditional digestive aids.
+                    Becs has over 18 years in Marketing and Digital Media, working across a variety of brands including lux, retail and FMCG.
                   </p>
                 </div>
               </div>
               
               <div className="flex space-x-4">
                 <img 
-                  src="/attached_assets/John_1749402024789.webp" 
+                  src="https://ik.imagekit.io/boostkit/Mintee/John.webp?updatedAt=1749408731573" 
                   alt="John Duffy, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
@@ -34,7 +34,7 @@ export default function AboutSection() {
                   <h3 className="gazpacho-black text-xl text-green-800">John Duffy</h3>
                   <p className="text-gray-600 mb-2">Co-Founder & Operations Director</p>
                   <p className="text-gray-700">
-                    John brings over 15 years of experience in sustainable business practices and supply chain management to ensure quality and environmental responsibility.
+                    John, a Chartered Accountant, has worked for 25 years in finance and M&A, lending to SMEs and Start-Ups across all industries for Australian, US, UK, Dutch and Irish banks.
                   </p>
                 </div>
               </div>
@@ -51,7 +51,7 @@ export default function AboutSection() {
           
           <div className="relative">
             <img 
-              src="/attached_assets/BecJohn_1749401687230.webp" 
+              src="https://ik.imagekit.io/boostkit/Mintee/BecJohn.webp?updatedAt=1749408731629" 
               alt="Founders working in their sustainable facility" 
               className="w-full h-auto rounded-2xl shadow-xl" 
             />

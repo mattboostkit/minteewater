@@ -17,7 +17,7 @@ const products = [
     description: "3 Bottle Pack - Perfect for trying Mintee",
     quantity: 3,
     price: "14.99",
-    imageUrl: "/api/placeholder/300/400",
+    imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: false
   },
   {
@@ -26,7 +26,7 @@ const products = [
     description: "6 Bottle Pack - Great for sharing",
     quantity: 6,
     price: "26.99",
-    imageUrl: "/api/placeholder/300/400",
+    imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: true
   },
   {
@@ -35,7 +35,7 @@ const products = [
     description: "12 Bottle Pack - Best value for regular drinkers",
     quantity: 12,
     price: "48.99",
-    imageUrl: "/api/placeholder/300/400",
+    imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: false
   }
 ];

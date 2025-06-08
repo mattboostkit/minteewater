@@ -15,7 +15,7 @@ export default function BenefitsSection() {
           {/* Digestive Wellness */}
           <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition-shadow">
             <img 
-              src="https://images.unsplash.com/photo-1628066055147-88dec76c667c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" 
+              src="https://ik.imagekit.io/boostkit/Mintee/Peppermint.webp?updatedAt=1749415897462" 
               alt="Fresh peppermint leaves" 
               className="w-full h-48 object-cover rounded-xl mb-6" 
             />
@@ -41,7 +41,7 @@ export default function BenefitsSection() {
           {/* Local Sourcing */}
           <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition-shadow">
             <img 
-              src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" 
+              src="https://ik.imagekit.io/boostkit/Mintee/Dublin.jpg?updatedAt=1745571757327" 
               alt="Natural water source in pristine environment" 
               className="w-full h-48 object-cover rounded-xl mb-6" 
             />

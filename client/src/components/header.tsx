@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
-import minteeLogoPath from "@assets/mintee_logo_1749400398970.webp";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +41,7 @@ export default function Header() {
           <Link href="/">
             <div className="flex items-center cursor-pointer">
               <img 
-                src={minteeLogoPath} 
+                src="https://ik.imagekit.io/boostkit/Mintee/mintee_logo.webp?updatedAt=1749408894363" 
                 alt="Mintee" 
                 className="h-11 w-auto"
               />

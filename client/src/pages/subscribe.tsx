@@ -244,7 +244,7 @@ export default function Subscribe() {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 pt-24">
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
           <p>Loading subscription plans...</p>
@@ -255,7 +255,7 @@ export default function Subscribe() {
 
   if (selectedPlan) {
     return (
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 pt-24">
         <Elements stripe={stripePromise}>
           <SubscriptionForm 
             selectedPlan={selectedPlan} 
@@ -267,7 +267,7 @@ export default function Subscribe() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16 pt-24">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           Subscribe & Save
