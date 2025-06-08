@@ -49,7 +49,7 @@ export default function Header() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {location === '/' ? (
               <button onClick={() => scrollToSection('home')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
                 Home
@@ -95,7 +95,7 @@ export default function Header() {
                 Contact
               </Link>
             )}
-            <Link href="/subscribe" className="text-green-700 hover:text-green-500 font-medium transition-colors bg-green-50 px-3 py-1 rounded-full">
+            <Link href="/subscribe" className="text-green-700 hover:text-green-500 font-medium transition-colors bg-green-50 px-3 py-1 rounded-full flex items-center">
               Subscribe
             </Link>
           </div>
