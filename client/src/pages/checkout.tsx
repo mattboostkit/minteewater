@@ -90,6 +90,9 @@ export default function Checkout() {
   const { items, total } = state;
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
     if (items.length === 0) {
       return;
     }
