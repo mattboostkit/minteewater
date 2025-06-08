@@ -46,16 +46,8 @@ export default function ShopSection() {
   }
 
   return (
-    <section id="shop" className="py-20 gradient-overlay">
+    <section id="shop" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="gazpacho-black text-4xl md:text-5xl text-green-800 mb-6">
-            Shop Mintee
-          </h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Choose the perfect quantity for your lifestyle. From individual bottles to bulk orders for the whole family.
-          </p>
-        </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products?.map((product, index) => (

@@ -8,12 +8,20 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CartSidebar from "@/components/cart-sidebar";
 import Home from "@/pages/home";
+import Shop from "@/pages/shop";
+import About from "@/pages/about";
+import Sustainability from "@/pages/sustainability";
+import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/shop" component={Shop} />
+      <Route path="/about" component={About} />
+      <Route path="/sustainability" component={Sustainability} />
+      <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );

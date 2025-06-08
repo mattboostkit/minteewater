@@ -1,49 +1,101 @@
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
+import minteeLogoPath from "@assets/mintee_1749399906433.webp";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { state, dispatch } = useCart();
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHomePage = location === '/';
+  const headerBg = isHomePage && !isScrolled 
+    ? 'bg-transparent' 
+    : 'bg-white/95 backdrop-blur-sm border-b border-green-100';
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+    if (location === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setMobileMenuOpen(false);
+      }
     }
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-green-100">
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${headerBg}`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center cursor-pointer">
-              <h1 className="gazpacho-black text-2xl text-green-700">MINTEE</h1>
-              <span className="ml-2 text-sm text-green-600 font-medium">WATER</span>
+              <img 
+                src={minteeLogoPath} 
+                alt="Mintee" 
+                className="h-8 w-auto"
+              />
             </div>
           </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            <button onClick={() => scrollToSection('home')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
-              Home
-            </button>
-            <button onClick={() => scrollToSection('shop')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
-              Shop
-            </button>
-            <button onClick={() => scrollToSection('about')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
-              About
-            </button>
-            <button onClick={() => scrollToSection('sustainability')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
-              Sustainability
-            </button>
-            <button onClick={() => scrollToSection('contact')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
-              Contact
-            </button>
+            {location === '/' ? (
+              <button onClick={() => scrollToSection('home')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Home
+              </button>
+            ) : (
+              <Link href="/" className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Home
+              </Link>
+            )}
+            {location === '/' ? (
+              <button onClick={() => scrollToSection('shop')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Shop
+              </button>
+            ) : (
+              <Link href="/shop" className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Shop
+              </Link>
+            )}
+            {location === '/' ? (
+              <button onClick={() => scrollToSection('about')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                About
+              </button>
+            ) : (
+              <Link href="/about" className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                About
+              </Link>
+            )}
+            {location === '/' ? (
+              <button onClick={() => scrollToSection('sustainability')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Sustainability
+              </button>
+            ) : (
+              <Link href="/sustainability" className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Sustainability
+              </Link>
+            )}
+            {location === '/' ? (
+              <button onClick={() => scrollToSection('contact')} className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Contact
+              </button>
+            ) : (
+              <Link href="/contact" className="text-green-700 hover:text-green-500 font-medium transition-colors">
+                Contact
+              </Link>
+            )}
           </div>
           
           {/* Cart & Mobile Menu Button */}
@@ -74,36 +126,66 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-green-100">
           <div className="px-4 py-2 space-y-1">
-            <button 
-              onClick={() => scrollToSection('home')} 
-              className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
-            >
-              Home
-            </button>
-            <button 
-              onClick={() => scrollToSection('shop')} 
-              className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
-            >
-              Shop
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')} 
-              className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => scrollToSection('sustainability')} 
-              className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
-            >
-              Sustainability
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')} 
-              className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
-            >
-              Contact
-            </button>
+            {location === '/' ? (
+              <button 
+                onClick={() => scrollToSection('home')} 
+                className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
+              >
+                Home
+              </button>
+            ) : (
+              <Link href="/" className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md">
+                Home
+              </Link>
+            )}
+            {location === '/' ? (
+              <button 
+                onClick={() => scrollToSection('shop')} 
+                className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
+              >
+                Shop
+              </button>
+            ) : (
+              <Link href="/shop" className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md">
+                Shop
+              </Link>
+            )}
+            {location === '/' ? (
+              <button 
+                onClick={() => scrollToSection('about')} 
+                className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
+              >
+                About
+              </button>
+            ) : (
+              <Link href="/about" className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md">
+                About
+              </Link>
+            )}
+            {location === '/' ? (
+              <button 
+                onClick={() => scrollToSection('sustainability')} 
+                className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
+              >
+                Sustainability
+              </button>
+            ) : (
+              <Link href="/sustainability" className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md">
+                Sustainability
+              </Link>
+            )}
+            {location === '/' ? (
+              <button 
+                onClick={() => scrollToSection('contact')} 
+                className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md"
+              >
+                Contact
+              </button>
+            ) : (
+              <Link href="/contact" className="block w-full text-left px-3 py-2 text-green-700 hover:bg-green-50 rounded-md">
+                Contact
+              </Link>
+            )}
           </div>
         </div>
       )}
