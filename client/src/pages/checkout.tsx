@@ -165,13 +165,13 @@ export default function Checkout() {
             {items.map((item: any) => (
               <div key={item.id} className="flex justify-between items-center py-2">
                 <span>{item.name} x {item.cartQuantity}</span>
-                <span>£{(parseFloat(item.price) * item.cartQuantity).toFixed(2)}</span>
+                <span>€{(parseFloat(item.price) * item.cartQuantity).toFixed(2)}</span>
               </div>
             ))}
             <div className="border-t pt-4 mt-4">
               <div className="flex justify-between items-center font-bold text-lg">
                 <span>Total</span>
-                <span>£{total.toFixed(2)}</span>
+                <span>€{total.toFixed(2)}</span>
               </div>
             </div>
           </div>

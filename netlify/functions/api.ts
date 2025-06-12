@@ -185,7 +185,7 @@ export const handler: Handler = async (event, context) => {
         const price = await stripe.prices.create({
           product: product.id,
           unit_amount: Math.round(parseFloat(plan.price) * 100),
-          currency: 'gbp',
+          currency: 'eur',
           recurring: {
             interval: plan.interval === 'weekly' ? 'week' : 
                      plan.interval === 'quarterly' ? 'month' : 'month',

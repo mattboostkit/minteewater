@@ -28,7 +28,7 @@ export default function PaymentSuccess() {
             <ul className="text-green-700 text-sm space-y-2">
               <li>• You'll receive an email confirmation shortly</li>
               <li>• Your order will be processed within 1-2 business days</li>
-              <li>• Free UK delivery on orders over £25</li>
+              <li>• Free EU delivery on orders over €25</li>
               <li>• Track your order via the confirmation email</li>
             </ul>
           </div>

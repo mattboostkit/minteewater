@@ -91,7 +91,7 @@
 
 @layer components {
   .gradient-hero {
-    background: linear-gradient(135deg, #EDFCE9 0%, #B9F4AE 50%, #82ED78 100%);
+    background: linear-gradient(135deg, #c9f8cf 0%, #ffffff 100%);
   }
   
   .gradient-overlay {

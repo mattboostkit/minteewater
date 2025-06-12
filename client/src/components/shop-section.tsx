@@ -73,8 +73,8 @@ export default function ShopSection() {
               <p className="text-gray-600 mb-4">{product.description}</p>
               
               <div className="flex items-center justify-between mb-4">
-                <span className="text-3xl font-bold text-green-700">£{product.price}</span>
-                <span className="text-sm text-gray-500">£{getPricePerBottle(product.price, product.quantity)} per bottle</span>
+                <span className="text-3xl font-bold text-green-700">€{product.price}</span>
+                <span className="text-sm text-gray-500">€{getPricePerBottle(product.price, product.quantity)} per bottle</span>
               </div>
               
               <Button 
@@ -89,8 +89,8 @@ export default function ShopSection() {
         
         {/* Free Delivery Notice */}
         <div className="mt-12 text-center bg-green-100 rounded-2xl p-6">
-          <h3 className="gazpacho-black text-xl text-green-800 mb-2">Free UK Delivery</h3>
-          <p className="text-green-700">On all orders over £25. Fast, reliable delivery to your door.</p>
+          <h3 className="gazpacho-black text-xl text-green-800 mb-2">Free Ire Delivery</h3>
+          <p className="text-green-700">On all orders. Fast, reliable delivery to your door.</p>
         </div>
       </div>
     </section>

@@ -12,12 +12,11 @@ export default function AboutSection() {
               <div className="flex space-x-4">
                 <img 
                   src="https://ik.imagekit.io/boostkit/Mintee/Becs.webp?updatedAt=1749408731641" 
-                  alt="Becs Duffy, Co-founder" 
+                  alt="Becs Hunter, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
                 <div>
-                  <h3 className="gazpacho-black text-xl text-green-800">Becs Duffy</h3>
-                  <p className="text-gray-600 mb-2">Co-Founder & Wellness Advocate</p>
+                  <h3 className="gazpacho-black text-xl text-green-800">Becs Hunter</h3>
                   <p className="text-gray-700">
                     Becs has over 18 years in Marketing and Digital Media, working across a variety of brands including lux, retail and FMCG.
                   </p>
@@ -27,12 +26,11 @@ export default function AboutSection() {
               <div className="flex space-x-4">
                 <img 
                   src="https://ik.imagekit.io/boostkit/Mintee/John.webp?updatedAt=1749408731573" 
-                  alt="John Duffy, Co-founder" 
+                  alt="John Hunter, Co-founder" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
                 <div>
-                  <h3 className="gazpacho-black text-xl text-green-800">John Duffy</h3>
-                  <p className="text-gray-600 mb-2">Co-Founder & Operations Director</p>
+                  <h3 className="gazpacho-black text-xl text-green-800">John Hunter</h3>
                   <p className="text-gray-700">
                     John, a Chartered Accountant, has worked for 25 years in finance and M&A, lending to SMEs and Start-Ups across all industries for Australian, US, UK, Dutch and Irish banks.
                   </p>
@@ -59,7 +57,7 @@ export default function AboutSection() {
             {/* Floating testimonial */}
             <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-lg max-w-sm">
               <p className="text-gray-700 italic mb-2">"We're passionate about creating products that make wellness accessible and enjoyable for everyone."</p>
-              <p className="text-green-700 font-semibold">- Becs & John Duffy</p>
+              <p className="text-green-700 font-semibold">- Becs & John Hunter</p>
             </div>
           </div>
         </div>

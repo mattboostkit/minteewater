@@ -21,8 +21,8 @@ export default function Shipping() {
             </div>
             <ul className="space-y-2 text-gray-600">
               <li>• 2-3 business days</li>
-              <li>• £3.99 for orders under £30</li>
-              <li>• FREE for orders over £30</li>
+              <li>• €3.99 for orders under €30</li>
+              <li>• FREE for orders over €30</li>
               <li>• Tracked delivery service</li>
             </ul>
           </div>
@@ -34,7 +34,7 @@ export default function Shipping() {
             </div>
             <ul className="space-y-2 text-gray-600">
               <li>• Next business day delivery</li>
-              <li>• £7.99 flat rate</li>
+              <li>• €7.99 flat rate</li>
               <li>• Order before 2 PM for next day</li>
               <li>• Priority handling</li>
             </ul>

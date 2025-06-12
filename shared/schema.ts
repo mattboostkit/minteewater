@@ -1,5 +1,5 @@
 import { pgTable, text, serial, integer, boolean, timestamp, decimal } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const users = pgTable("users", {
@@ -127,11 +127,20 @@ export const insertSubscriptionPlanSchema = createInsertSchema(subscriptionPlans
   createdAt: true,
 });
 
-export const insertSubscriptionSchema = createInsertSchema(subscriptions).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
+// Schema for validating the client request body when creating a subscription
+export const createSubscriptionClientSchema = createInsertSchema(subscriptions, {
+  deliveryAddress: z.string().min(1, "Delivery address is required"),
+}).pick({
+  planId: true,
+  deliveryAddress: true,
+  userId: true,
 });
+
+// Schema for inserting a new subscription into the database
+export const insertSubscriptionSchema = createInsertSchema(subscriptions);
+
+// Schema for selecting a subscription from the database
+export const selectSubscriptionSchema = createSelectSchema(subscriptions);
 
 export const insertSubscriptionDeliverySchema = createInsertSchema(subscriptionDeliveries).omit({
   id: true,
@@ -152,7 +161,7 @@ export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect
 export type InsertNewsletterSubscription = z.infer<typeof insertNewsletterSubscriptionSchema>;
 export type SubscriptionPlan = typeof subscriptionPlans.$inferSelect;
 export type InsertSubscriptionPlan = z.infer<typeof insertSubscriptionPlanSchema>;
-export type Subscription = typeof subscriptions.$inferSelect;
+export type Subscription = z.infer<typeof selectSubscriptionSchema>;
 export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;
 export type SubscriptionDelivery = typeof subscriptionDeliveries.$inferSelect;
 export type InsertSubscriptionDelivery = z.infer<typeof insertSubscriptionDeliverySchema>;

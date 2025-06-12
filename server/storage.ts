@@ -103,93 +103,72 @@ export class MemStorage implements IStorage {
     this.seedSubscriptionPlans();
   }
 
-  private seedProducts() {
-    const defaultProducts: InsertProduct[] = [
-      {
-        name: "Starter Pack",
-        description: "3 Bottles - Perfect for trying Mintee",
-        quantity: 3,
-        price: "8.99",
-        imageUrl: "/attached_assets/Three_Bottles_1749401611342.webp",
-        isPopular: false
-      },
-      {
-        name: "Family Pack",
-        description: "6 Bottles - Great for regular enjoyment",
-        quantity: 6,
-        price: "16.99",
-        imageUrl: "/attached_assets/Six_Bottles_1749401611341.webp",
-        isPopular: true
-      },
-      {
-        name: "Monthly Supply",
-        description: "12 Bottles - Perfect monthly hydration",
-        quantity: 12,
-        price: "31.99",
-        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
-        isPopular: false
-      },
-      {
-        name: "Office Pack",
-        description: "24 Bottles - Great for sharing",
-        quantity: 24,
-        price: "59.99",
-        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
-        isPopular: false
-      },
-      {
-        name: "Bulk Order",
-        description: "48 Bottles - Best value for money",
-        quantity: 48,
-        price: "109.99",
-        imageUrl: "/attached_assets/Twelve_Bottles_1749401611342.webp",
-        isPopular: false
-      }
-    ];
+  private async seedProducts() {
+    // To ensure the new data is seeded, we'll clear existing products on restart.
+    if ((await this.getAllProducts()).length > 0) {
+      this.products.clear();
+      this.currentProductId = 1;
+    }
+    console.log("Seeding products...");
 
-    defaultProducts.forEach(product => {
-      const id = this.currentProductId++;
-      const processedProduct: Product = { 
-        ...product, 
-        id,
-        description: product.description || null,
-        imageUrl: product.imageUrl || null,
-        isPopular: product.isPopular ?? false
-      };
-      this.products.set(id, processedProduct);
+    const placeholderImage = "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560";
+
+    await this.createProduct({
+      name: "Starter Pack",
+      description: "3 Bottle Pack - Perfect for trying Mintee",
+      price: "6.30",
+      quantity: 3,
+      imageUrl: placeholderImage,
+      isPopular: false,
+    });
+    await this.createProduct({
+      name: "Family Pack",
+      description: "6 Bottle Pack - Great for sharing",
+      price: "11.50",
+      quantity: 6,
+      imageUrl: placeholderImage,
+      isPopular: true,
+    });
+    await this.createProduct({
+      name: "Value Pack",
+      description: "12 Bottle Pack - Best value for regular drinkers",
+      price: "23.60",
+      quantity: 12,
+      imageUrl: placeholderImage,
+      isPopular: false,
     });
   }
 
   private seedSubscriptionPlans() {
     const defaultPlans: InsertSubscriptionPlan[] = [
       {
-        name: "Weekly Refresh",
-        description: "6 bottles delivered every week - never run out",
-        price: "15.99",
+        name: "Weekly Delivery",
+        description: "Fresh Mintee delivered to your door every week",
+        price: "11",
         interval: "weekly",
         productQuantity: 6,
-        productId: 2, // Family Pack
+        productId: 2,
         stripePriceId: "price_weekly_6_bottles",
         isActive: true
       },
       {
-        name: "Monthly Essential",
-        description: "12 bottles delivered monthly - perfect routine",
-        price: "29.99",
+        name: "Monthly Delivery",
+        description: "Monthly supply of refreshing Mintee water",
+        price: "40",
         interval: "monthly",
-        productQuantity: 12,
-        productId: 3, // Monthly Supply
-        stripePriceId: "price_monthly_12_bottles",
+        productQuantity: 24,
+        productId: 4,
+        stripePriceId: "price_monthly_24_bottles",
         isActive: true
       },
       {
-        name: "Quarterly Stock",
-        description: "36 bottles delivered every 3 months - best value",
-        price: "84.99",
+        name: "Quarterly Delivery",
+        description: "Stock up with our best value quarterly plan",
+        price: "100",
         interval: "quarterly",
-        productQuantity: 36,
-        productId: 3, // Monthly Supply x3
-        stripePriceId: "price_quarterly_36_bottles",
+        productQuantity: 72,
+        productId: 4, 
+        stripePriceId: "price_quarterly_72_bottles",
         isActive: true
       }
     ];
@@ -370,17 +349,23 @@ export class MemStorage implements IStorage {
   // Subscription methods
   async createSubscription(insertSubscription: InsertSubscription): Promise<Subscription> {
     const id = this.currentSubscriptionId++;
-    const subscription: Subscription = { 
-      ...insertSubscription, 
-      id, 
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      userId: insertSubscription.userId || null,
-      planId: insertSubscription.planId || null,
-      currentPeriodStart: insertSubscription.currentPeriodStart || null,
-      currentPeriodEnd: insertSubscription.currentPeriodEnd || null,
-      cancelAtPeriodEnd: insertSubscription.cancelAtPeriodEnd ?? false
+    const now = new Date();
+
+    const subscription: Subscription = {
+      id,
+      createdAt: now,
+      updatedAt: now,
+      userId: insertSubscription.userId ?? null,
+      planId: insertSubscription.planId ?? null,
+      stripeCustomerId: insertSubscription.stripeCustomerId,
+      stripeSubscriptionId: insertSubscription.stripeSubscriptionId,
+      status: insertSubscription.status,
+      deliveryAddress: insertSubscription.deliveryAddress,
+      currentPeriodStart: insertSubscription.currentPeriodStart ?? null,
+      currentPeriodEnd: insertSubscription.currentPeriodEnd ?? null,
+      cancelAtPeriodEnd: insertSubscription.cancelAtPeriodEnd ?? null,
     };
+
     this.subscriptions.set(id, subscription);
     return subscription;
   }

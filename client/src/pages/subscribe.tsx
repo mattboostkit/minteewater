@@ -20,7 +20,7 @@ interface SubscriptionPlan {
   description: string | null;
   price: string;
   interval: string;
-  bottlesPerDelivery: number;
+  productQuantity: number;
   isPopular: boolean;
 }
 
@@ -63,13 +63,24 @@ const CustomerInfoForm = ({ selectedPlan, onBack, onClientSecretReceived }: Cust
       });
 
       const data = await response.json();
-      onClientSecretReceived(data.clientSecret);
+      if (data.clientSecret) {
+        onClientSecretReceived(data.clientSecret);
+      } else {
+        console.error("Subscription creation response:", data);
+        toast({
+          title: "Subscription Error",
+          description: data.error || "Could not initialize payment. Please try again.",
+          variant: "destructive",
+        });
+      }
     } catch (error: any) {
+      console.error("Subscription creation error:", error);
       toast({
         title: "Subscription Error",
-        description: error.message || "Failed to create subscription",
+        description: error.message || "Failed to create subscription. Please check your internet connection and try again.",
         variant: "destructive",
       });
+    } finally {
       setIsLoading(false);
     }
   };
@@ -81,7 +92,7 @@ const CustomerInfoForm = ({ selectedPlan, onBack, onClientSecretReceived }: Cust
         <CardHeader>
           <CardTitle>Subscription Details</CardTitle>
           <CardDescription>
-            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
+            €{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.productQuantity} bottles
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -135,7 +146,7 @@ const CustomerInfoForm = ({ selectedPlan, onBack, onClientSecretReceived }: Cust
               <div className="flex justify-between items-center mb-4">
                 <span className="text-lg font-semibold">Total:</span>
                 <span className="text-2xl font-bold text-green-600">
-                  £{selectedPlan?.price}/{selectedPlan?.interval}
+                  €{selectedPlan?.price}/{selectedPlan?.interval}
                 </span>
               </div>
               
@@ -207,7 +218,7 @@ const PaymentForm = ({ selectedPlan, onBack }: PaymentFormProps) => {
         <CardHeader>
           <CardTitle>Complete Your Subscription</CardTitle>
           <CardDescription>
-            £{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.bottlesPerDelivery} bottles
+            €{selectedPlan?.price}/{selectedPlan?.interval} • {selectedPlan?.productQuantity} bottles
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -353,7 +364,7 @@ export default function Subscribe() {
                 {plan.description}
               </CardDescription>
               <div className="pt-4">
-                <span className="text-4xl font-bold text-green-600">£{plan.price}</span>
+                <span className="text-4xl font-bold text-green-600">€{plan.price}</span>
                 <span className="text-gray-600">/{plan.interval}</span>
               </div>
             </CardHeader>
@@ -361,7 +372,7 @@ export default function Subscribe() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span>Bottles per delivery:</span>
-                  <span className="font-semibold">{plan.bottlesPerDelivery}</span>
+                  <span className="font-semibold">{plan.productQuantity}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Delivery frequency:</span>
@@ -370,7 +381,7 @@ export default function Subscribe() {
                 <div className="flex items-center justify-between">
                   <span>Price per bottle:</span>
                   <span className="font-semibold">
-                    £{(parseFloat(plan.price) / plan.bottlesPerDelivery).toFixed(2)}
+                    €{(parseFloat(plan.price) / plan.productQuantity).toFixed(2)}
                   </span>
                 </div>
               </div>

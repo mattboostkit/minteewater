@@ -2,12 +2,14 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
-import { 
-  insertContactMessageSchema, 
+import {
+  insertContactMessageSchema,
+  insertProductSchema,
   insertNewsletterSubscriptionSchema,
   insertOrderSchema,
   insertOrderItemSchema,
-  insertSubscriptionSchema
+  createSubscriptionClientSchema,
+  InsertSubscription
 } from "@shared/schema";
 import { z } from "zod";
 
@@ -176,7 +178,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
-        currency: "gbp",
+        currency: "eur",
         metadata: {
           source: "mintee-website"
         }
@@ -204,7 +206,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create subscription with Stripe
   app.post("/api/create-subscription", async (req, res) => {
     try {
-      const subscriptionData = insertSubscriptionSchema.parse(req.body);
+      const clientPayloadSchema = createSubscriptionClientSchema.extend({
+        customerName: z.string(),
+        customerEmail: z.string().email(),
+      });
+
+      const subscriptionData = clientPayloadSchema.parse(req.body);
       
       // Get the subscription plan
       const plan = await storage.getSubscriptionPlan(subscriptionData.planId!);
@@ -227,22 +234,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({ error: "Failed to create customer" });
       }
 
-      // Create Stripe subscription
-      let stripeSubscription;
+      // Create Stripe product and subscription
+      let stripeSubscription: Stripe.Subscription;
       try {
+        const product = await stripe.products.create({
+          name: plan.name,
+          description: plan.description || undefined
+        });
+
         stripeSubscription = await stripe.subscriptions.create({
           customer: stripeCustomer.id,
           items: [{
             price_data: {
-              currency: 'gbp',
-              product_data: {
-                name: plan.name,
-                description: plan.description || undefined,
-              },
+              currency: 'eur',
+              product: product.id,
               unit_amount: Math.round(parseFloat(plan.price) * 100),
               recurring: {
                 interval: plan.interval === 'weekly' ? 'week' : 
-                         plan.interval === 'quarterly' ? 'month' : 'month',
+                          plan.interval === 'quarterly' ? 'month' : 'month',
                 interval_count: plan.interval === 'quarterly' ? 3 : 1
               }
             }
@@ -257,19 +266,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Save subscription to storage
-      const subscription = await storage.createSubscription({
+      const newSubscriptionData: InsertSubscription = {
         planId: plan.id,
         stripeSubscriptionId: stripeSubscription.id,
         stripeCustomerId: stripeCustomer.id,
         status: stripeSubscription.status,
-        currentPeriodStart: new Date(stripeSubscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
+                currentPeriodStart: new Date((stripeSubscription as any).current_period_start * 1000),
+        currentPeriodEnd: new Date((stripeSubscription as any).current_period_end * 1000),
         deliveryAddress: subscriptionData.deliveryAddress,
-        cancelAtPeriodEnd: false,
-        userId: subscriptionData.userId
-      });
+        cancelAtPeriodEnd: stripeSubscription.cancel_at_period_end,
+        userId: subscriptionData.userId || null,
+      };
 
-      const invoice = stripeSubscription.latest_invoice as any;
+      const subscription = await storage.createSubscription(newSubscriptionData);
+
+      const invoice = stripeSubscription.latest_invoice as Stripe.Invoice & { payment_intent?: Stripe.PaymentIntent };
       const paymentIntent = invoice?.payment_intent;
 
       res.json({
@@ -279,11 +290,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         status: stripeSubscription.status
       });
     } catch (error: any) {
+      console.error("Subscription creation failed:", error);
+      let errorMessage = "Failed to create subscription.";
       if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: "Invalid subscription data", details: error.errors });
+        errorMessage = error.errors.map(e => e.message).join(', ');
       }
-      console.error("Subscription creation error:", error);
-      res.status(500).json({ error: "Failed to create subscription: " + error.message });
+      else if (error.message) {
+        errorMessage = error.message;
+      }
+      res.status(500).json({ error: errorMessage });
     }
   });
 
@@ -323,7 +338,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(updatedSubscription);
     } catch (error: any) {
       console.error("Subscription cancellation error:", error);
-      res.status(500).json({ error: "Failed to cancel subscription: " + error.message });
+      let errorMessage = "Failed to cancel subscription.";
+      if (error instanceof z.ZodError) {
+        errorMessage = error.errors.map(e => e.message).join(', ');
+      }
+      else if (error.message) {
+        errorMessage = error.message;
+      }
+      res.status(500).json({ error: errorMessage });
     }
   });
 

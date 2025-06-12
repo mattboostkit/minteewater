@@ -53,7 +53,7 @@ export default function CartSidebar() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900">{item.name}</h4>
                         <p className="text-sm text-gray-500">{item.quantity} bottles</p>
-                        <p className="text-green-700 font-semibold">£{item.price}</p>
+                        <p className="text-green-700 font-semibold">€{item.price}</p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <button 
@@ -88,7 +88,7 @@ export default function CartSidebar() {
             <div className="border-t border-gray-200 px-6 py-4 space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold text-gray-900">Total:</span>
-                <span className="text-2xl font-bold text-green-700">£{state.total.toFixed(2)}</span>
+                <span className="text-2xl font-bold text-green-700">€{state.total.toFixed(2)}</span>
               </div>
               <Link href="/checkout">
                 <Button 
@@ -99,7 +99,7 @@ export default function CartSidebar() {
                 </Button>
               </Link>
               <p className="text-xs text-gray-500 text-center">
-                Free UK delivery on orders over £25
+                Free EU delivery on orders over €25
               </p>
             </div>
           )}
