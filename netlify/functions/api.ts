@@ -48,7 +48,7 @@ const subscriptionPlans = [
     description: "Fresh Mintee delivered to your door every week",
     price: "9.99",
     interval: "weekly",
-    bottlesPerDelivery: 6,
+    productQuantity: 6,
     isPopular: false
   },
   {
@@ -57,7 +57,7 @@ const subscriptionPlans = [
     description: "Monthly supply of refreshing Mintee water",
     price: "34.99",
     interval: "monthly",
-    bottlesPerDelivery: 24,
+    productQuantity: 24,
     isPopular: true
   },
   {
@@ -66,7 +66,7 @@ const subscriptionPlans = [
     description: "Stock up with our best value quarterly plan",
     price: "94.99",
     interval: "quarterly",
-    bottlesPerDelivery: 72,
+    productQuantity: 72,
     isPopular: false
   }
 ];

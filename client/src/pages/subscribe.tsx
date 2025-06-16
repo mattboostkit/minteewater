@@ -391,6 +391,7 @@ export default function Subscribe() {
                 size="lg"
                 onClick={() => setSelectedPlan(plan)}
                 variant={getPopularPlan()?.id === plan.id ? "default" : "outline"}
+                style={getPopularPlan()?.id === plan.id ? { backgroundColor: "#2fc555", borderColor: "#2fc555" } : undefined}
               >
                 Choose Plan
               </Button>
