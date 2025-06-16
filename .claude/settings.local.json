@@ -6,7 +6,12 @@
       "Bash(npm run build:*)",
       "Bash(npm install)",
       "Bash(mkdir:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(jq:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(awk:*)"
     ],
     "deny": []
   }

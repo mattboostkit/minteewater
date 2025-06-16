@@ -59,12 +59,8 @@ export default function HeroSection() {
             <img 
               src="https://ik.imagekit.io/boostkit/Mintee/Mintee_Hero.webp?updatedAt=1749416997118" 
               alt="Mintee premium peppermint water bottles" 
-              className="w-full h-auto rounded-2xl shadow-2xl" 
+              className="w-full h-auto rounded-2xl" 
             />
-            
-            {/* Floating elements for visual interest */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-green-200 rounded-full opacity-60 animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-green-300 rounded-full opacity-40 animate-pulse delay-300"></div>
           </div>
         </div>
       </div>
