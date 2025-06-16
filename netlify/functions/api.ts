@@ -16,7 +16,7 @@ const products = [
     name: "Starter Pack",
     description: "3 Bottle Pack - Perfect for trying Mintee",
     quantity: 3,
-    price: "14.99",
+    price: "6.30",
     imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: false
   },
@@ -25,7 +25,7 @@ const products = [
     name: "Family Pack",
     description: "6 Bottle Pack - Great for sharing",
     quantity: 6,
-    price: "26.99",
+    price: "11.50",
     imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: true
   },
@@ -34,7 +34,7 @@ const products = [
     name: "Value Pack",
     description: "12 Bottle Pack - Best value for regular drinkers",
     quantity: 12,
-    price: "48.99",
+    price: "23.60",
     imageUrl: "https://ik.imagekit.io/boostkit/Mintee/Three_Bottles.webp?updatedAt=1749408731560",
     isPopular: false
   }
@@ -101,7 +101,7 @@ export const handler: Handler = async (event, context) => {
       
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
-        currency: "gbp",
+        currency: "eur",
         automatic_payment_methods: {
           enabled: true,
         },
